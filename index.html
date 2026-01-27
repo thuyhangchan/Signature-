@@ -60,6 +60,7 @@
 
       .dark .glass {
         background: rgba(15, 23, 42, 0.6);
+        border: none;
         border-top: 1px solid rgba(255, 255, 255, 0.1);
       }
 
@@ -86,7 +87,7 @@
       .reveal {
         opacity: 0;
         transform: translateY(40px);
-        transition: all 1s cubic-bezier(0.5, 0, 0, 1);
+        transition: all 0.5s cubic-bezier(0.5, 0, 0, 1);
       }
       .reveal.active {
         opacity: 1;
@@ -103,20 +104,74 @@
       .dark .text-gradient {
         background-image: linear-gradient(135deg, #38bdf8, #34d399);
       }
+      @keyframes ripple {
+        0% {
+          transform: scale(0.8);
+          opacity: 0.5;
+        }
+        100% {
+          transform: scale(2.5);
+          opacity: 0;
+        }
+      }
+
+      .marker-ripple {
+        animation: ripple 2s infinite;
+      }
+
+      .glass-container {
+        backdrop-filter: blur(8px);
+        background-image: radial-gradient(
+          circle at 2px 2px,
+          rgba(0, 0, 0, 0.05) 1px,
+          transparent 0
+        );
+        background-size: 24px 24px;
+      }
+
+      .dark .glass-container {
+        background-image: radial-gradient(
+          circle at 2px 2px,
+          rgba(255, 255, 255, 0.05) 1px,
+          transparent 0
+        );
+      }
+      /* Hiệu ứng gợn sóng cho các marker */
+      @keyframes ripple {
+        0% {
+          transform: scale(0.8);
+          opacity: 0.7;
+        }
+        100% {
+          transform: scale(2.5);
+          opacity: 0;
+        }
+      }
+      .marker-ripple {
+        animation: ripple 2s infinite;
+      }
+
+      /* Glassmorphism nâng cao */
+      .glass-map-container {
+        backdrop-filter: blur(12px);
+        background: radial-gradient(
+          circle at 2px 2px,
+          rgba(59, 130, 246, 0.05) 1px,
+          transparent 0
+        );
+        background-size: 30px 30px;
+      }
     </style>
   </head>
   <body
     class="light bg-lightBg text-slate-800 dark:bg-darkBg dark:text-slate-200"
   >
+    <!-- HEADER -->
     <nav
       class="fixed top-0 w-full z-50 glass px-6 py-4 flex justify-between items-center"
     >
       <div class="flex items-center gap-3">
-        <div
-          class="w-10 h-10 bg-gradient-to-br from-blue-600 to-emerald-500 rounded-xl flex items-center justify-center text-white font-extrabold shadow-lg"
-        >
-          S
-        </div>
+        <img src="./logo.png" alt="logo" class="w-12 h-12" />
         <div>
           <span
             class="block font-bold text-sm tracking-widest uppercase leading-none"
@@ -168,6 +223,7 @@
         </button>
       </div>
     </nav>
+    <!-- ------ -->
 
     <section
       id="hero"
@@ -175,7 +231,7 @@
     >
       <div class="absolute inset-0 z-0">
         <img
-          src="https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&q=80"
+          src="./background.png"
           alt="Hà Giang"
           class="w-full h-full object-cover"
         />
@@ -316,11 +372,12 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div
+          <a
+            href="./ha-giang-detail.html"
             class="group relative h-[500px] rounded-3xl overflow-hidden hover-card reveal cursor-pointer shadow-xl"
           >
             <img
-              src="https://images.unsplash.com/photo-1596395819057-e37f55a8516d?auto=format&fit=crop&q=80"
+              src="./hagiang2.png"
               class="w-full h-full object-cover transition duration-700 group-hover:scale-110"
             />
             <div
@@ -359,13 +416,14 @@
                 </ul>
               </div>
             </div>
-          </div>
+          </a>
 
-          <div
+          <a
+            href="./cao-bang-detail.html"
             class="group relative h-[500px] rounded-3xl overflow-hidden hover-card reveal delay-100 cursor-pointer shadow-xl"
           >
             <img
-              src="https://images.unsplash.com/photo-1464817739973-0128fe77aaa1?auto=format&fit=crop&q=80"
+              src="./caobang.png"
               class="w-full h-full object-cover transition duration-700 group-hover:scale-110"
             />
             <div
@@ -391,13 +449,14 @@
                 </ul>
               </div>
             </div>
-          </div>
+          </a>
 
-          <div
+          <a
+            href="./bac-kan-detail.html"
             class="group relative h-[500px] rounded-3xl overflow-hidden hover-card reveal delay-200 cursor-pointer shadow-xl"
           >
             <img
-              src="https://images.unsplash.com/photo-1533519889753-380d60d3d517?auto=format&fit=crop&q=80"
+              src="./backan.png"
               class="w-full h-full object-cover transition duration-700 group-hover:scale-110"
             />
             <div
@@ -423,122 +482,372 @@
                 </ul>
               </div>
             </div>
-          </div>
+          </a>
         </div>
       </div>
     </section>
 
-    <section id="itinerary" class="py-24 overflow-hidden relative">
-      <div class="max-w-5xl mx-auto px-6 relative z-10">
-        <div class="text-center mb-20 reveal">
-          <span
-            class="px-4 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full text-xs font-bold uppercase tracking-wider"
-            >Tour Hot Nhất</span
+    <section id="itinerary" class="py-24 bg-white dark:bg-slate-950 relative">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="mb-20 text-center lg:text-left">
+          <div
+            class="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-sm font-bold tracking-widest uppercase mb-6 animate-fade-in"
           >
-          <h2 class="text-4xl font-serif font-bold mt-6">
-            Cung Đường Huyền Thoại (5N4Đ)
+            <span class="relative flex h-3 w-3">
+              <span
+                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"
+              ></span>
+              <span
+                class="relative inline-flex rounded-full h-3 w-3 bg-blue-500"
+              ></span>
+            </span>
+            Hành trình di sản
+          </div>
+
+          <h2
+            class="text-4xl md:text-6xl font-black text-slate-900 dark:text-white leading-[1.1] mb-6"
+          >
+            Khám Phá
+            <span
+              class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-emerald-500"
+              >Vòng Cung Đông Bắc</span
+            >
           </h2>
+
+          <p
+            class="max-w-2xl text-slate-600 dark:text-slate-400 text-lg leading-relaxed"
+          >
+            Chương trình 5 ngày 4 đêm đưa bạn đi qua những cung đường đèo huyền
+            thoại, chinh phục những đỉnh cao và đắm mình trong làn nước xanh
+            biếc của hồ trên núi.
+          </p>
         </div>
-
-        <div
-          class="relative border-l-2 border-slate-200 dark:border-slate-700 ml-4 md:ml-1/2 md:-translate-x-[1px] space-y-16"
-        >
-          <div class="relative md:flex items-center group reveal w-full">
-            <div class="md:w-1/2 md:pr-12 md:text-right pl-10 md:pl-0">
-              <h4 class="text-2xl font-bold text-blue-600">
-                Ngày 1: Hà Nội – Hà Giang
-              </h4>
-              <p class="text-slate-600 dark:text-slate-400 mt-2">
-                Rời thủ đô đến thành phố vùng cao. Bắt đầu hành trình chinh phục
-                Đông Bắc.
-              </p>
-            </div>
+        <div class="flex flex-col lg:flex-row gap-16 items-start">
+          <div class="w-full lg:w-1/2 sticky top-24 hidden lg:block h-[85vh]">
             <div
-              class="absolute left-[-5px] md:left-1/2 md:-translate-x-[5px] top-0 md:top-1/2 md:-translate-y-1/2 w-4 h-4 bg-white border-4 border-blue-600 rounded-full z-10 shadow-lg"
-            ></div>
-            <div class="md:w-1/2 md:pl-12 pl-10 mt-4 md:mt-0">
-              <div class="overflow-hidden rounded-2xl shadow-lg h-48">
-                <img
-                  src="https://images.unsplash.com/photo-1555921090-b3a21762a735?auto=format&fit=crop&q=80"
-                  class="w-full h-full object-cover hover:scale-110 transition duration-500"
-                />
-              </div>
-            </div>
-          </div>
-
-          <div
-            class="relative md:flex items-center group reveal flex-row-reverse w-full"
-          >
-            <div class="md:w-1/2 md:pl-12 pl-10">
-              <h4 class="text-2xl font-bold text-emerald-600">
-                Ngày 2: Đồng Văn – Lũng Cú
-              </h4>
-              <p class="text-slate-600 dark:text-slate-400 mt-2">
-                Check-in Cổng trời, Dinh Vua Mèo, cột cờ Lũng Cú và phố cổ Đồng
-                Văn.
-              </p>
-            </div>
-            <div
-              class="absolute left-[-5px] md:left-1/2 md:-translate-x-[5px] top-0 md:top-1/2 md:-translate-y-1/2 w-4 h-4 bg-white border-4 border-emerald-600 rounded-full z-10 shadow-lg"
-            ></div>
-            <div
-              class="md:w-1/2 md:pr-12 md:text-right pl-10 md:pl-0 mt-4 md:mt-0"
+              class="glass-map-container w-full h-full rounded-[3rem] p-8 relative shadow-2xl border border-slate-200/60 dark:border-slate-800/60 overflow-hidden bg-slate-50/50 dark:bg-slate-900/50"
             >
-              <div class="overflow-hidden rounded-2xl shadow-lg h-48 ml-auto">
-                <img
-                  src="https://images.unsplash.com/photo-1583417319070-4a69db38a482?auto=format&fit=crop&q=80"
-                  class="w-full h-full object-cover hover:scale-110 transition duration-500"
-                />
+              <div
+                class="absolute top-10 left-10 text-xs font-mono opacity-20 dark:text-white"
+              >
+                Lịch trình
               </div>
+              <div
+                class="absolute bottom-20 right-10 text-4xl opacity-10 animate-bounce"
+              >
+                ☁️
+              </div>
+
+              <svg
+                id="travel-map"
+                viewBox="0 0 400 1200"
+                class="w-full h-full drop-shadow-2xl"
+              >
+                <defs>
+                  <linearGradient
+                    id="roadGradient"
+                    x1="0%"
+                    y1="0%"
+                    x2="0%"
+                    y2="100%"
+                  >
+                    <stop offset="0%" style="stop-color: #3b82f6" />
+                    <stop offset="100%" style="stop-color: #10b981" />
+                  </linearGradient>
+                </defs>
+
+                <path
+                  id="road-bg"
+                  d="M200,50 C380,150 20,250 350,400 S50,600 350,800 S50,1000 200,1150"
+                  fill="none"
+                  stroke="#e2e8f0"
+                  stroke-width="4"
+                  stroke-dasharray="10,10"
+                  class="dark:stroke-slate-800"
+                />
+
+                <path
+                  id="road-path"
+                  d="M200,50 C380,150 20,250 350,400 S50,600 350,800 S50,1000 200,1150"
+                  fill="none"
+                  stroke="url(#roadGradient)"
+                  stroke-width="10"
+                  stroke-linecap="round"
+                />
+
+                <g transform="translate(200, 50)">
+                  <circle
+                    r="15"
+                    fill="#3b82f6"
+                    opacity="0.2"
+                    class="marker-ripple"
+                  />
+                  <circle
+                    r="6"
+                    fill="#3b82f6"
+                    stroke="white"
+                    stroke-width="2"
+                  />
+                  <text
+                    x="20"
+                    y="5"
+                    class="text-[18px] font-bold fill-slate-800 dark:fill-white"
+                  >
+                    Hà Nội
+                  </text>
+                </g>
+
+                <g transform="translate(350, 400)">
+                  <circle
+                    r="12"
+                    fill="#f472b6"
+                    opacity="0.2"
+                    class="marker-ripple"
+                  />
+                  <circle
+                    r="5"
+                    fill="#f472b6"
+                    stroke="white"
+                    stroke-width="2"
+                  />
+                  <text
+                    x="-120"
+                    y="5"
+                    class="text-[14px] font-bold fill-pink-500 uppercase"
+                  >
+                    Đồng Văn
+                  </text>
+                </g>
+
+                <g transform="translate(340, 600)">
+                  <circle
+                    r="12"
+                    fill="#10b981"
+                    opacity="0.2"
+                    class="marker-ripple"
+                  />
+                  <circle
+                    r="5"
+                    fill="#10b981"
+                    stroke="white"
+                    stroke-width="2"
+                  />
+                  <text
+                    x="20"
+                    y="5"
+                    class="text-[14px] font-bold fill-emerald-600 uppercase"
+                  >
+                    TP. Cao Bằng
+                  </text>
+                </g>
+
+                <g transform="translate(350, 800)">
+                  <circle
+                    r="12"
+                    fill="#f59e0b"
+                    opacity="0.2"
+                    class="marker-ripple"
+                  />
+                  <circle
+                    r="5"
+                    fill="#f59e0b"
+                    stroke="white"
+                    stroke-width="2"
+                  />
+                  <text
+                    x="-90"
+                    y="5"
+                    class="text-[14px] font-bold fill-amber-600 uppercase"
+                  >
+                    Hồ Ba Bể
+                  </text>
+                </g>
+
+                <g transform="translate(200, 1150)">
+                  <circle
+                    r="12"
+                    fill="#3b82f6"
+                    opacity="0.2"
+                    class="marker-ripple"
+                  />
+                  <circle
+                    r="5"
+                    fill="#3b82f6"
+                    stroke="white"
+                    stroke-width="2"
+                  />
+                  <text
+                    x="20"
+                    y="5"
+                    class="text-[14px] font-bold fill-blue-600 uppercase"
+                  >
+                    Hà Nội (Kết thúc)
+                  </text>
+                </g>
+
+                <g
+                  id="car-icon"
+                  style="
+                    offset-path: path(
+                      &quot;M200,50 C380,150 20,250 350,400 S50,600 350,800 S50,1000 200,1150&quot;
+                    );
+                    offset-rotate: auto;
+                  "
+                >
+                  <rect
+                    x="-16"
+                    y="-9"
+                    width="32"
+                    height="18"
+                    rx="5"
+                    fill="#1e293b"
+                    class="dark:fill-white"
+                  />
+                  <rect
+                    x="6"
+                    y="-6"
+                    width="10"
+                    height="12"
+                    rx="2"
+                    fill="#38bdf8"
+                    opacity="0.8"
+                  />
+                </g>
+              </svg>
             </div>
           </div>
 
-          <div class="relative md:flex items-center group reveal w-full">
-            <div class="md:w-1/2 md:pr-12 md:text-right pl-10 md:pl-0">
-              <h4 class="text-2xl font-bold text-blue-600">
-                Ngày 3: Mã Pí Lèng – Cao Bằng
-              </h4>
-              <p class="text-slate-600 dark:text-slate-400 mt-2">
-                Chinh phục "Tứ đại đỉnh đèo", đi thuyền trên sông Nho Quế xanh
-                ngắt.
-              </p>
-            </div>
-            <div
-              class="absolute left-[-5px] md:left-1/2 md:-translate-x-[5px] top-0 md:top-1/2 md:-translate-y-1/2 w-4 h-4 bg-white border-4 border-blue-600 rounded-full z-10 shadow-lg"
-            ></div>
-            <div class="md:w-1/2 md:pl-12 pl-10 mt-4 md:mt-0">
-              <div class="overflow-hidden rounded-2xl shadow-lg h-48">
-                <img
-                  src="https://images.unsplash.com/photo-1629517929424-601955b25390?auto=format&fit=crop&q=80"
-                  class="w-full h-full object-cover hover:scale-110 transition duration-500"
-                />
+          <div class="w-full lg:w-1/2 space-y-32 pb-[30vh]">
+            <div class="itinerary-step group" data-step="1">
+              <div
+                class="relative pl-12 border-l-2 border-slate-200 dark:border-slate-800 group-[.active]:border-blue-500 transition-all duration-700"
+              >
+                <div
+                  class="absolute -left-[11px] top-0 w-5 h-5 rounded-full bg-white dark:bg-slate-950 border-4 border-slate-200 dark:border-slate-800 group-[.active]:border-blue-500 shadow-xl transition-all"
+                ></div>
+                <span
+                  class="text-sm font-black text-blue-500 uppercase tracking-[0.2em]"
+                  >Ngày 01</span
+                >
+                <h3
+                  class="text-3xl font-bold mt-2 text-slate-900 dark:text-white"
+                >
+                  Thủ đô Hà Nội – TP. Hà Giang
+                </h3>
+                <p
+                  class="mt-4 text-slate-600 dark:text-slate-400 leading-relaxed"
+                >
+                  Rời Thủ đô Hà Nội, đoàn lên đường đến TP. Hà Giang, mở ra hành
+                  trình chinh phục Đông Bắc với những dấu ấn đầu tiên nơi thành
+                  phố vùng cao.
+                </p>
               </div>
             </div>
-          </div>
 
-          <div
-            class="relative md:flex items-center group reveal flex-row-reverse w-full"
-          >
-            <div class="md:w-1/2 md:pl-12 pl-10">
-              <h4 class="text-2xl font-bold text-emerald-600">
-                Ngày 4 & 5: Ba Bể - Hà Nội
-              </h4>
-              <p class="text-slate-600 dark:text-slate-400 mt-2">
-                Thăm di tích Pác Bó. Nghỉ dưỡng tại Hồ Ba Bể, thăm Đảo Bà Góa
-                trước khi về Hà Nội.
-              </p>
+            <div class="itinerary-step group" data-step="2">
+              <div
+                class="relative pl-12 border-l-2 border-slate-200 dark:border-slate-800 group-[.active]:border-pink-500 transition-all duration-700"
+              >
+                <div
+                  class="absolute -left-[11px] top-0 w-5 h-5 rounded-full bg-white dark:bg-slate-950 border-4 border-slate-200 dark:border-slate-800 group-[.active]:border-pink-500 transition-all"
+                ></div>
+                <span
+                  class="text-sm font-black text-pink-500 uppercase tracking-[0.2em]"
+                  >Ngày 02</span
+                >
+                <h3
+                  class="text-3xl font-bold mt-2 text-slate-900 dark:text-white"
+                >
+                  Cao nguyên đá Đồng Văn
+                </h3>
+                <p
+                  class="mt-4 text-slate-600 dark:text-slate-400 leading-relaxed"
+                >
+                  Con đường Hạnh Phúc đưa đoàn băng vào Cao nguyên đá Đồng Văn,
+                  nơi mở ra Cổng trời Quản Bạ, Dinh Vua Mèo và lá cờ tung bay
+                  nơi cực Bắc Lũng Cú, khép lại ngày bằng nhịp sống cổ kính của
+                  phố cổ Đồng Văn.
+                </p>
+              </div>
             </div>
-            <div
-              class="absolute left-[-5px] md:left-1/2 md:-translate-x-[5px] top-0 md:top-1/2 md:-translate-y-1/2 w-4 h-4 bg-white border-4 border-emerald-600 rounded-full z-10 shadow-lg"
-            ></div>
-            <div
-              class="md:w-1/2 md:pr-12 md:text-right pl-10 md:pl-0 mt-4 md:mt-0"
-            >
-              <div class="overflow-hidden rounded-2xl shadow-lg h-48 ml-auto">
-                <img
-                  src="https://images.unsplash.com/photo-1610986518179-c5c7ce1507a2?auto=format&fit=crop&q=80"
-                  class="w-full h-full object-cover hover:scale-110 transition duration-500"
-                />
+
+            <div class="itinerary-step group" data-step="3">
+              <div
+                class="relative pl-12 border-l-2 border-slate-200 dark:border-slate-800 group-[.active]:border-emerald-500 transition-all duration-700"
+              >
+                <div
+                  class="absolute -left-[11px] top-0 w-5 h-5 rounded-full bg-white dark:bg-slate-950 border-4 border-slate-200 dark:border-slate-800 group-[.active]:border-emerald-500 transition-all"
+                ></div>
+                <span
+                  class="text-sm font-black text-emerald-500 uppercase tracking-[0.2em]"
+                  >Ngày 03</span
+                >
+                <h3
+                  class="text-3xl font-bold mt-2 text-slate-900 dark:text-white"
+                >
+                  Mã Pì Lèng – TP. Cao Bằng
+                </h3>
+                <p
+                  class="mt-4 text-slate-600 dark:text-slate-400 leading-relaxed"
+                >
+                  Từ Đồng Văn, đoàn chinh phục đèo Mã Pí Lèng, du ngoạn sông Nho
+                  Quế xanh ngọc, rồi men theo cung đường sông Gâm thơ mộng để về
+                  TP. Cao Bằng, khép lại một ngày đậm chất núi rừng Đông Bắc.
+                </p>
+              </div>
+            </div>
+
+            <div class="itinerary-step group" data-step="4">
+              <div
+                class="relative pl-12 border-l-2 border-slate-200 dark:border-slate-800 group-[.active]:border-amber-500 transition-all duration-700"
+              >
+                <div
+                  class="absolute -left-[11px] top-0 w-5 h-5 rounded-full bg-white dark:bg-slate-950 border-4 border-slate-200 dark:border-slate-800 group-[.active]:border-amber-500 transition-all"
+                ></div>
+                <span
+                  class="text-sm font-black text-amber-500 uppercase tracking-[0.2em]"
+                  >Ngày 04</span
+                >
+                <h3
+                  class="text-3xl font-bold mt-2 text-slate-900 dark:text-white"
+                >
+                  Pác Bó – Hồ Ba Bể
+                </h3>
+                <p
+                  class="mt-4 text-slate-600 dark:text-slate-400 leading-relaxed"
+                >
+                  Từ Cao Bằng, đoàn về Pác Bó tham quan khu di tích lịch sử gắn
+                  với Chủ tịch Hồ Chí Minh, sau đó băng qua các cung đèo núi
+                  rừng để đến Ba Bể (Bắc Kạn), nghỉ đêm giữa không gian yên
+                  bình.
+                </p>
+              </div>
+            </div>
+
+            <div class="itinerary-step group" data-step="5">
+              <div
+                class="relative pl-12 border-l-2 border-slate-200 dark:border-slate-800 group-[.active]:border-sky-500 transition-all duration-700"
+              >
+                <div
+                  class="absolute -left-[11px] top-0 w-5 h-5 rounded-full bg-white dark:bg-slate-950 border-4 border-slate-200 dark:border-slate-800 group-[.active]:border-sky-500 transition-all"
+                ></div>
+                <span
+                  class="text-sm font-black text-sky-500 uppercase tracking-[0.2em]"
+                  >Ngày 05</span
+                >
+                <h3
+                  class="text-3xl font-bold mt-2 text-slate-900 dark:text-white"
+                >
+                  Ba Bể – Thủ đô Hà Nội
+                </h3>
+                <p
+                  class="mt-4 text-slate-600 dark:text-slate-400 leading-relaxed"
+                >
+                  Sương sớm phủ mặt hồ Ba Bể, đoàn lên thuyền len giữa núi rừng,
+                  ghé Thác Đầu Đẳng, Đền An Mạ và Đảo Bà Góa. Sau bữa trưa, hành
+                  trình khép lại trên đường trở về Hà Nội, để lại dư âm yên bình
+                  của núi rừng Đông Bắc.
+                </p>
               </div>
             </div>
           </div>
@@ -728,7 +1037,6 @@
         lucide.createIcons(); // Re-render icon
       }
 
-      // 3. Scroll Reveal Logic
       const observerOptions = {
         root: null,
         rootMargin: "0px",
@@ -745,6 +1053,50 @@
 
       document.querySelectorAll(".reveal").forEach((el) => {
         observer.observe(el);
+      });
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const section = document.querySelector("#itinerary");
+        const roadPath = document.querySelector("#road-path");
+        const car = document.querySelector("#car-icon");
+        const steps = document.querySelectorAll(".itinerary-step");
+
+        const pathLength = roadPath.getTotalLength();
+        roadPath.style.strokeDasharray = pathLength;
+
+        const handleScroll = () => {
+          const rect = section.getBoundingClientRect();
+          const windowHeight = window.innerHeight;
+
+          // Tính % cuộn trong section (Từ 0 đến 1)
+          let progress =
+            (windowHeight / 2 - rect.top) / (rect.height - windowHeight / 2);
+          progress = Math.max(0, Math.min(1, progress));
+
+          // Cập nhật đường vẽ & xe
+          roadPath.style.strokeDashoffset = pathLength - pathLength * progress;
+          car.style.offsetDistance = progress * 100 + "%";
+
+          // Kích hoạt Active step dựa trên vị trí cuộn
+          steps.forEach((step) => {
+            const stepRect = step.getBoundingClientRect();
+            if (
+              stepRect.top < windowHeight / 2 &&
+              stepRect.bottom > windowHeight / 2
+            ) {
+              step.classList.add("active");
+              step.style.opacity = "1";
+              step.style.transform = "translateX(10px)";
+            } else {
+              step.classList.remove("active");
+              step.style.opacity = "0.4";
+              step.style.transform = "translateX(0)";
+            }
+          });
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        handleScroll(); // Chạy ngay khi load trang
       });
     </script>
   </body>

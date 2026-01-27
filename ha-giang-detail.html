@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hà Giang – Thông tin du lịch</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        font-family: "Inter", system-ui, sans-serif;
+      }
+    </style>
+  </head>
+
+  <body class="bg-slate-950 text-slate-100">
+    <!-- HEADER -->
+    <header
+      class="fixed top-0 w-full z-50 bg-slate-950/70 backdrop-blur border-b border-white/10"
+    >
+      <div
+        class="max-w-6xl mx-auto px-6 py-5 flex justify-between items-center"
+      >
+        <h1 class="text-lg font-bold tracking-wide">Hà Giang</h1>
+        <a
+          href="javascript:history.back()"
+          class="text-sm text-slate-400 hover:text-white flex items-center gap-2"
+        >
+          <i data-lucide="arrow-left" class="w-4 h-4"></i> Quay lại
+        </a>
+      </div>
+    </header>
+
+    <!-- HERO IMAGE -->
+    <section class="pt-24">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="rounded-3xl overflow-hidden h-[420px] relative">
+          <img src="./hagian1.png" class="w-full h-full object-cover" />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent"
+          ></div>
+
+          <div class="absolute bottom-8 left-8">
+            <h2 class="text-4xl md:text-5xl font-black">Hà Giang</h2>
+            <p class="text-slate-300 mt-2 max-w-xl">
+              Vùng đất địa đầu Tổ quốc, nơi đá núi, con người và lịch sử hòa làm
+              một.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INFO GRID -->
+    <section class="py-16">
+      <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="info-card">
+          <h3>Vị trí</h3>
+          <p>Cực Bắc Việt Nam, thuộc vùng núi Đông Bắc.</p>
+        </div>
+
+        <div class="info-card">
+          <h3>Thời điểm đẹp</h3>
+          <p>Tháng 10–12 (tam giác mạch), 1–3 (hoa đào, hoa mận).</p>
+        </div>
+
+        <div class="info-card">
+          <h3>Di chuyển</h3>
+          <p>Hà Nội → Hà Giang ~300km, 6–7 tiếng.</p>
+        </div>
+
+        <div class="info-card">
+          <h3>Lưu ý</h3>
+          <p>Tránh đổ đèo ban đêm, kiểm tra phanh xe kỹ.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- IMAGE + TEXT SPLIT -->
+    <section class="pb-20">
+      <div
+        class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center"
+      >
+        <div class="rounded-3xl overflow-hidden h-[360px]">
+          <img src="./hagian1.png" class="w-full h-full object-cover" />
+        </div>
+
+        <div>
+          <h3 class="text-2xl font-bold mb-4">Thiên nhiên & địa hình</h3>
+          <p class="text-slate-400 leading-relaxed">
+            Hà Giang nổi tiếng với cao nguyên đá Đồng Văn, những cung đường đèo
+            hiểm trở và các hẻm vực sâu bậc nhất Đông Nam Á. Đây là điểm đến
+            dành cho những người yêu thiên nhiên và thích trải nghiệm.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PLACES -->
+    <section class="pb-24">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="flex items-end justify-between mb-10">
+          <h3 class="text-2xl font-bold">Điểm tham quan nổi bật</h3>
+          <span class="text-sm text-slate-400">03 địa điểm</span>
+        </div>
+
+        <div
+          class="divide-y divide-white/10 border border-white/10 rounded-2xl overflow-hidden"
+        >
+          <!-- Item -->
+          <div
+            class="flex justify-between items-center p-6 bg-white/5 hover:bg-white/10 transition"
+          >
+            <div class="flex items-center gap-4">
+              <span class="text-xs font-bold text-blue-400 tracking-widest"
+                >01</span
+              >
+              <div>
+                <h4>Đèo Mã Pí Lèng</h4>
+                <p>Một trong tứ đại đỉnh đèo, nhìn xuống hẻm Tu Sản.</p>
+              </div>
+            </div>
+            <span
+              class="text-xs px-3 py-1 rounded-full bg-white/10 text-slate-300;"
+              >Cảnh quan</span
+            >
+          </div>
+
+          <!-- Item -->
+          <div
+            class="flex justify-between items-center p-6 bg-white/5 hover:bg-white/10 transition"
+          >
+            <div class="flex items-center gap-4">
+              <span class="text-xs font-bold text-blue-400 tracking-widest"
+                >02</span
+              >
+              <div>
+                <h4>Sông Nho Quế</h4>
+                <p>Dòng sông xanh ngọc bích uốn lượn giữa núi đá.</p>
+              </div>
+            </div>
+            <span
+              class="text-xs px-3 py-1 rounded-full bg-white/10 text-slate-300;"
+              >Trải nghiệm</span
+            >
+          </div>
+
+          <!-- Item -->
+          <div
+            class="flex justify-between items-center p-6 bg-white/5 hover:bg-white/10 transition"
+          >
+            <div class="flex items-center gap-4">
+              <span class="text-xs font-bold text-blue-400 tracking-widest"
+                >03</span
+              >
+              <div>
+                <h4>Cột cờ Lũng Cú</h4>
+                <p>Biểu tượng thiêng liêng nơi cực Bắc Tổ quốc.</p>
+              </div>
+            </div>
+            <span
+              class="text-xs px-3 py-1 rounded-full bg-white/10 text-slate-300;"
+              >Biểu tượng</span
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPONENT STYLE -->
+    <style>
+      .info-card {
+        @apply p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition;
+      }
+
+      .info-card h3 {
+        @apply font-semibold mb-2;
+      }
+
+      .info-card p {
+        @apply text-sm text-slate-400;
+      }
+
+      .place-card {
+        @apply bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:bg-white/10 transition;
+      }
+
+      .place-card img {
+        @apply w-full h-48 object-cover;
+      }
+
+      .place-card h4 {
+        @apply p-4 font-semibold;
+      }
+    </style>
+
+    <script>
+      lucide.createIcons();
+    </script>
+  </body>
+</html>

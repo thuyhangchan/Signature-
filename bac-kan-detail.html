@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bắc Kạn – Viên Ngọc Xanh Giữa Đại Ngàn</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        font-family: "Inter", system-ui, sans-serif;
+      }
+      .info-card {
+        @apply p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition;
+      }
+      .info-card h3 {
+        @apply font-semibold mb-2 text-teal-400;
+      }
+      .info-card p {
+        @apply text-sm text-slate-400;
+      }
+    </style>
+  </head>
+
+  <body class="bg-slate-950 text-slate-100">
+    <header
+      class="fixed top-0 w-full z-50 bg-slate-950/70 backdrop-blur border-b border-white/10"
+    >
+      <div
+        class="max-w-6xl mx-auto px-6 py-5 flex justify-between items-center"
+      >
+        <h1 class="text-lg font-bold tracking-wide flex items-center gap-2">
+          <span class="w-2 h-2 bg-teal-500 rounded-full"></span> Bắc Kạn
+        </h1>
+        <a
+          href="index.html"
+          class="text-sm text-slate-400 hover:text-white flex items-center gap-2 transition"
+        >
+          <i data-lucide="arrow-left" class="w-4 h-4"></i> Quay lại
+        </a>
+      </div>
+    </header>
+
+    <section class="pt-24">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="rounded-3xl overflow-hidden h-[420px] relative group">
+          <img
+            src="./backan.png"
+            class="w-full h-full object-cover transition duration-700 group-hover:scale-105"
+            alt="Bắc Kạn"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent"
+          ></div>
+          <div class="absolute bottom-8 left-8">
+            <h2 class="text-4xl md:text-5xl font-black italic">Bắc Kạn</h2>
+            <p class="text-slate-300 mt-2 max-w-xl">
+              Thả mình giữa không gian tĩnh lặng của hồ trên núi và rừng nguyên
+              sinh kỳ vĩ.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16">
+      <div
+        class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+      >
+        <div class="info-card">
+          <h3>Vị trí</h3>
+          <p>Trung tâm vùng núi Đông Bắc Việt Nam.</p>
+        </div>
+        <div class="info-card">
+          <h3>Thời điểm</h3>
+          <p>Mùa hè (tháng 5-7) là lúc đẹp nhất để tắm hồ, tránh nóng.</p>
+        </div>
+        <div class="info-card">
+          <h3>Trải nghiệm</h3>
+          <p>Đi thuyền trên hồ, khám phá hang động, ngủ bản.</p>
+        </div>
+        <div class="info-card">
+          <h3>Lưu ý</h3>
+          <p>Nên chuẩn bị thuốc xịt côn trùng vì khu vực nhiều rừng rậm.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-20">
+      <div
+        class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center"
+      >
+        <div>
+          <h3 class="text-3xl font-bold mb-6 italic">Hệ sinh thái xanh</h3>
+          <p class="text-slate-400 leading-relaxed">
+            Trái tim của Bắc Kạn chính là hồ Ba Bể - một trong những hồ nước
+            ngọt lớn nhất thế giới nằm trên núi. Hệ sinh thái đa dạng cùng không
+            khí mát mẻ quanh năm khiến nơi đây trở thành "lá phổi xanh" của vùng
+            Đông Bắc.
+          </p>
+          <div
+            class="mt-8 flex items-center gap-4 p-4 bg-teal-500/5 rounded-2xl border border-teal-500/20"
+          >
+            <div
+              class="w-12 h-12 rounded-full bg-teal-500/20 flex items-center justify-center"
+            >
+              <i data-lucide="leaf" class="text-teal-500"></i>
+            </div>
+            <div>
+              <p class="text-sm font-bold text-teal-400 italic">
+                Vườn Quốc Gia Ba Bể
+              </p>
+              <p class="text-xs text-slate-500">
+                Khu bảo tồn đất ngập nước quan trọng của thế giới (RAMSAR).
+              </p>
+            </div>
+          </div>
+        </div>
+        <div
+          class="rounded-3xl overflow-hidden h-[400px] border border-white/10 shadow-2xl"
+        >
+          <img src="./backan.png" class="w-full h-full object-cover" />
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-24">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="mb-10 flex justify-between items-center">
+          <h3 class="text-2xl font-bold italic">Danh thắng nổi bật</h3>
+          <div class="h-px flex-1 bg-white/10 mx-6 hidden md:block"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div
+            class="place-card p-6 bg-white/5 border border-white/10 rounded-[2rem] hover:border-teal-500/50 transition"
+          >
+            <h4 class="text-lg font-bold text-teal-400 mb-2">Hồ Ba Bể</h4>
+            <p class="text-sm text-slate-400 leading-relaxed">
+              Lênh đênh trên thuyền giữa lòng hồ, tận hưởng sự tĩnh lặng và kỳ
+              vĩ của núi đá vôi soi bóng nước.
+            </p>
+          </div>
+          <div
+            class="place-card p-6 bg-white/5 border border-white/10 rounded-[2rem] hover:border-teal-500/50 transition"
+          >
+            <h4 class="text-lg font-bold text-teal-400 mb-2">Động Puông</h4>
+            <p class="text-sm text-slate-400 leading-relaxed">
+              Hang động khổng lồ với dòng sông Năng chảy xuyên qua, nơi sinh
+              sống của hàng vạn con dơi.
+            </p>
+          </div>
+          <div
+            class="place-card p-6 bg-white/5 border border-white/10 rounded-[2rem] hover:border-teal-500/50 transition"
+          >
+            <h4 class="text-lg font-bold text-teal-400 mb-2">Thác Đầu Đẳng</h4>
+            <p class="text-sm text-slate-400 leading-relaxed">
+              Dòng thác mạnh mẽ len lỏi qua những khối đá lớn, tạo nên khung
+              cảnh hoang sơ đến nghẹt thở.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      lucide.createIcons();
+    </script>
+  </body>
+</html>
