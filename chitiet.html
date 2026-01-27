@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guide Book - Đông Bắc</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        overflow: hidden;
+      }
+      .slide {
+        display: none;
+      }
+      .slide.active {
+        display: block;
+        animation: fadeIn 0.4s ease-out;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateX(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+
+      /* Hiệu ứng active cho ảnh nhỏ bên trái */
+      .thumb-item.active {
+        border-color: #10b981; /* emerald-500 */
+        opacity: 1;
+        transform: scale(1.05);
+      }
+    </style>
+  </head>
+  <body class="bg-slate-950 text-white h-screen flex flex-col">
+    <header
+      class="h-16 flex justify-between items-center px-6 border-b border-white/10 bg-slate-900/50 backdrop-blur-md z-50"
+    >
+      <div class="flex items-center gap-3">
+        <div class="w-2 h-6 bg-emerald-500 rounded-full"></div>
+        <h1 class="text-lg font-black tracking-tighter uppercase">
+          GUIDE BOOK
+          <span class="text-emerald-500 text-sm md:text-lg">Đông Bắc</span>
+        </h1>
+      </div>
+      <div class="flex items-center gap-6">
+        <span id="counter" class="text-emerald-400 font-mono font-bold"
+          >01 / 13</span
+        >
+        <a
+          href="index.html"
+          class="p-2 hover:bg-white/10 rounded-full transition"
+        >
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </a>
+      </div>
+    </header>
+
+    <div class="flex flex-1 overflow-hidden">
+      <aside
+        class="w-24 md:w-32 border-r border-white/10 bg-slate-900/20 overflow-y-auto no-scrollbar p-3 flex flex-col gap-4"
+      >
+        <div id="thumbnail-container" class="flex flex-col gap-4"></div>
+      </aside>
+
+      <main
+        class="flex-1 relative flex items-center justify-center bg-black/40 p-4 md:p-8"
+      >
+        <div
+          class="h-full w-full max-w-4xl relative group flex items-center justify-center"
+        >
+          <div
+            id="slider-container"
+            class="h-full w-full flex items-center justify-center"
+          ></div>
+
+          <button
+            onclick="changeSlide(-1)"
+            class="absolute left-4 p-4 rounded-full bg-black/50 hover:bg-emerald-500 text-white transition-all border border-white/10 opacity-0 group-hover:opacity-100"
+          >
+            <i data-lucide="chevron-left" class="w-8 h-8"></i>
+          </button>
+          <button
+            onclick="changeSlide(1)"
+            class="absolute right-4 p-4 rounded-full bg-black/50 hover:bg-emerald-500 text-white transition-all border border-white/10 opacity-0 group-hover:opacity-100"
+          >
+            <i data-lucide="chevron-right" class="w-8 h-8"></i>
+          </button>
+        </div>
+
+        <div
+          class="absolute bottom-4 right-6 text-[10px] text-slate-600 uppercase tracking-widest hidden md:block"
+        >
+          Sử dụng phím mũi tên hoặc cuộn chuột
+        </div>
+      </main>
+    </div>
+
+    <script>
+      const totalImages = 13;
+      let currentIndex = 1;
+
+      const sliderContainer = document.getElementById("slider-container");
+      const thumbContainer = document.getElementById("thumbnail-container");
+      const counterLabel = document.getElementById("counter");
+
+      function initSlider() {
+        for (let i = 1; i <= totalImages; i++) {
+          // Slide chính: h-full giúp ảnh cao hết cỡ
+          const div = document.createElement("div");
+          div.className = `slide h-full w-full ${i === 1 ? "active" : ""}`;
+          div.id = `slide-${i}`;
+          // object-contain đảm bảo không mất chữ trên file dọc
+          div.innerHTML = `<img src="./${i}.png" class="h-full w-full object-contain mx-auto" alt="Trang ${i}">`;
+          sliderContainer.appendChild(div);
+
+          // Thumbnail bên trái
+          const thumb = document.createElement("div");
+          thumb.className = `thumb-item w-full aspect-[1/1.41] rounded-lg overflow-hidden cursor-pointer border-2 border-transparent opacity-40 transition-all duration-300 hover:opacity-100`;
+          thumb.id = `thumb-${i}`;
+          thumb.onclick = () => goToSlide(i);
+          thumb.innerHTML = `<img src="./${i}.png" class="w-full h-full object-cover">`;
+          thumbContainer.appendChild(thumb);
+        }
+        lucide.createIcons();
+        updateActiveThumb();
+      }
+
+      function changeSlide(n) {
+        let nextIndex = currentIndex + n;
+        if (nextIndex > totalImages) nextIndex = 1;
+        if (nextIndex < 1) nextIndex = totalImages;
+        goToSlide(nextIndex);
+      }
+
+      function goToSlide(n) {
+        // Tắt slide cũ
+        document
+          .getElementById(`slide-${currentIndex}`)
+          .classList.remove("active");
+        document
+          .getElementById(`thumb-${currentIndex}`)
+          .classList.remove("active");
+
+        // Cập nhật index
+        currentIndex = n;
+
+        // Bật slide mới
+        document
+          .getElementById(`slide-${currentIndex}`)
+          .classList.add("active");
+        updateActiveThumb();
+
+        // Cập nhật số trang
+        counterLabel.innerText = `${currentIndex.toString().padStart(2, "0")} / ${totalImages}`;
+      }
+
+      function updateActiveThumb() {
+        const activeThumb = document.getElementById(`thumb-${currentIndex}`);
+        activeThumb.classList.add("active");
+        // Tự động cuộn sidebar để thấy ảnh đang chọn
+        activeThumb.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+
+      // Điều khiển phím tắt
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowLeft" || e.key === "ArrowUp") changeSlide(-1);
+        if (e.key === "ArrowRight" || e.key === "ArrowDown") changeSlide(1);
+      });
+
+      initSlider();
+    </script>
+  </body>
+</html>
