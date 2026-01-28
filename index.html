@@ -292,26 +292,6 @@
         >
           <i data-lucide="play-circle" class="text-blue-500"></i> Video Giới Thiệu
         </button>
-
-        <div id="videoModal" class="fixed inset-0 z-[100] hidden items-center justify-center  p-4">
-          <div class="relative w-full max-w-4xl">
-            <button id="closeVideo" class="absolute -top-12 right-0 text-white hover:text-blue-500 transition flex items-center gap-2">
-              <span class="text-sm font-bold uppercase tracking-widest">Đóng</span>
-              <i data-lucide="x" class="w-8 h-8"></i>
-            </button>
-            
-            <div class="aspect-video w-full rounded-2xl overflow-hidden shadow-2xl border border-white/10">
-              <iframe 
-                id="videoIframe"
-                src="" 
-                width="100%" 
-                height="100%" 
-                allow="autoplay; fullscreen"
-                >
-              </iframe>
-            </div>
-          </div>
-        </div>
         </div>
       </div>
 
@@ -1082,7 +1062,25 @@
         © 2026 Mọi quyền được bảo lưu - Đỗ Thúy Hằng
       </div>
     </footer>
-
+    <div id="videoModal" class="fixed inset-0 z-[100] hidden items-center justify-center  p-4">
+          <div class="relative w-full max-w-4xl">
+            <button id="closeVideo" class="absolute -top-12 right-0 text-white hover:text-blue-500 transition flex items-center gap-2">
+              <span class="text-sm font-bold uppercase tracking-widest">Đóng</span>
+              <i data-lucide="x" class="w-8 h-8"></i>
+            </button>
+            
+            <div class="aspect-video w-full rounded-2xl overflow-hidden shadow-2xl border border-white/10">
+              <iframe 
+                id="videoIframe"
+                src="" 
+                width="100%" 
+                height="100%" 
+                allow="autoplay; fullscreen"
+                >
+              </iframe>
+            </div>
+          </div>
+        </div>
     <script>
       // 1. Initialize Icons
       lucide.createIcons();
