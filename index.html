@@ -163,6 +163,15 @@
         );
         background-size: 30px 30px;
       }
+      #videoModal.active {
+        display: flex;
+        animation: fadeIn 0.3s ease-out;
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; transform: scale(1.1); }
+        to { opacity: 1; transform: scale(1); }
+      }
     </style>
   </head>
   <body
@@ -277,12 +286,32 @@
               class="w-4 h-4 group-hover:translate-x-1 transition"
             ></i>
           </a>
-          <button
-            class="px-10 py-4 glass text-slate-900 dark:text-white rounded-2xl font-bold hover:bg-white/80 dark:hover:bg-slate-800 transition flex items-center justify-center gap-2 shadow-lg"
-          >
-            <i data-lucide="play-circle" class="text-blue-500"></i> Video Giới
-            Thiệu
-          </button>
+        <button
+          id="openVideo"
+          class="px-10 py-4 glass text-slate-900 dark:text-white rounded-2xl font-bold hover:bg-white/80 dark:hover:bg-slate-800 transition flex items-center justify-center gap-2 shadow-lg"
+        >
+          <i data-lucide="play-circle" class="text-blue-500"></i> Video Giới Thiệu
+        </button>
+
+        <div id="videoModal" class="fixed inset-0 z-[100] hidden items-center justify-center  p-4">
+          <div class="relative w-full max-w-4xl">
+            <button id="closeVideo" class="absolute -top-12 right-0 text-white hover:text-blue-500 transition flex items-center gap-2">
+              <span class="text-sm font-bold uppercase tracking-widest">Đóng</span>
+              <i data-lucide="x" class="w-8 h-8"></i>
+            </button>
+            
+            <div class="aspect-video w-full rounded-2xl overflow-hidden shadow-2xl border border-white/10">
+              <iframe 
+                id="videoIframe"
+                src="" 
+                width="100%" 
+                height="100%" 
+                allow="autoplay; fullscreen"
+                >
+              </iframe>
+            </div>
+          </div>
+        </div>
         </div>
       </div>
 
@@ -885,7 +914,14 @@
         </div>
       </div>
     </section>
-
+    <div class="w-full item-center flex justify-center mt-20 mb-5 cursor-pointer">
+      <a
+        href="./guidbook.html"
+        class="inline-flex max-w items-center gap-2 px-8 py-3 bg-white text-slate-950 font-bold rounded-full hover:bg-emerald-500 hover:text-white transition-all duration-300 shadow-lg group"
+      >
+        GUIDE BOOK
+      </a>
+    </div>
     <section id="info" class="py-24 bg-slate-50 dark:bg-darkBg relative">
       <div class="max-w-6xl mx-auto px-6">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -1006,14 +1042,7 @@
         </div>
       </div>
     </section>
-    <div class="w-full item-center flex justify-center mb-20 cursor-pointer">
-      <a
-        href="./guidbook.html"
-        class="inline-flex max-w items-center gap-2 px-8 py-3 bg-white text-slate-950 font-bold rounded-full hover:bg-emerald-500 hover:text-white transition-all duration-300 shadow-lg group"
-      >
-        GUIDE BOOK
-      </a>
-    </div>
+    
     <footer
       class="bg-white dark:bg-slate-950 py-16 border-t border-slate-200 dark:border-slate-800"
     >
@@ -1134,7 +1163,32 @@
         };
 
         window.addEventListener("scroll", handleScroll);
-        handleScroll(); // Chạy ngay khi load trang
+        handleScroll();
+      });
+      const openBtn = document.getElementById('openVideo');
+      const closeBtn = document.getElementById('closeVideo');
+      const modal = document.getElementById('videoModal');
+      const iframe = document.getElementById('videoIframe');
+      const videoUrl = "https://drive.google.com/file/d/1MhTMn3wNuOLtIu71QgIHnQTiYF-KyfRS/preview";
+
+      // Mở Modal
+      openBtn.addEventListener('click', () => {
+        iframe.src = videoUrl; 
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden'; 
+      });
+
+      // Đóng Modal
+      const closeModal = () => {
+        modal.classList.remove('active');
+        iframe.src = ""; 
+        document.body.style.overflow = 'auto';
+      };
+
+      closeBtn.addEventListener('click', closeModal);
+
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
       });
     </script>
   </body>
